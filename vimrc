@@ -50,12 +50,6 @@ Bundle 'lambdalisue/nodeunit.vim'
 " Misc
 Bundle 'vim-scripts/nginx.vim'
 
-set tabstop=4
-set softtabstop=4
-set sts=4
-set sw=4
-set expandtab
-
 filetype plugin indent on     " required!
 "
 " Brief help
@@ -89,10 +83,12 @@ au! BufWinEnter *.styl call colorv#preview("S")
 au! bufwritepost *.styl call colorv#preview("S")
 autocmd BufNewFile,BufRead *.markdown setfiletype octopress
 
+syntax enable
 set background=dark
 colorscheme solarized
-call togglebg#map("<F5>")
-let g:solarized_termtrans=0
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+
 if has ('gui_running')
     if has('mac')
         set gfn=Monaco:h13
@@ -106,15 +102,42 @@ if has('statusline')
     set laststatus=2
     " Broken down into easily includeable segments
     set statusline=%<%f\    " Filename
-    set statusline+=%{fugitive#statusline()} "  Git Hotness
     set statusline+=\ [%{&ff}/%Y]            " filetype
     set statusline+=\ [%{getcwd()}]          " current dir
 endif
 
-color solarized                 " load a colorscheme
-set tabpagemax=15               " only show 15 tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set sts=4
+set sw=4
+set expandtab
 set showmode                    " display the current mode
+set smarttab                    " Smarter tab levels
 
 set cursorline                  " highlight current line
 hi cursorline guibg=#333333     " highlight bg color of current line
 hi CursorColumn guibg=#333333   " highlight cursor
+
+set nowritebackup
+set nobackup
+set directory=/tmp//            " prepend(^=) $HOME/.tmp/ to default path; use full path as backup filename(//)
+
+set hlsearch                    " highlight search
+set ignorecase                  " Do case in sensitive matching with
+set smartcase                   " be sensitive when there's a capital letter
+
+set nowrap
+set textwidth=0                 " Don't wrap lines by default
+
+set backspace=indent,eol,start  " more powerful backspacing
+
+set showmatch                   " Show matching brackets.
+set matchtime=5                 " Bracket blinking.
+set laststatus=2                " Always show status line.
+set ruler                       " Show ruler
+set showcmd                     " Display an incomplete command in the lower right corner of the Vim window
+
+set nolist                      " Display unprintable characters f12 - switches
+set listchars=tab:·\ ,eol:¶,trail:·,extends:»,precedes:« " Unprintable chars mapping
+
