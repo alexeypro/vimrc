@@ -85,7 +85,7 @@ autocmd BufNewFile,BufRead *.markdown setfiletype octopress
 
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 
